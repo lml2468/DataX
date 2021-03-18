@@ -17,11 +17,12 @@
     <packaging>pom</packaging>
 
     <properties>
+        <jdk-version>1.8</jdk-version>
         <datax-project-version>0.0.1-SNAPSHOT</datax-project-version>
         <commons-lang3-version>3.3.2</commons-lang3-version>
         <commons-configuration-version>1.10</commons-configuration-version>
         <commons-cli-version>1.2</commons-cli-version>
-        <fastjson-version>1.1.46.sec01</fastjson-version>
+        <fastjson-version>1.1.46.sec10</fastjson-version>
         <guava-version>16.0.1</guava-version>
         <diamond.version>3.7.2.1-SNAPSHOT</diamond.version>
 
@@ -29,7 +30,7 @@
         <slf4j-api-version>1.7.10</slf4j-api-version>
         <logback-classic-version>1.0.13</logback-classic-version>
         <commons-io-version>2.4</commons-io-version>
-        <junit-version>4.11</junit-version>
+        <junit-version>4.13.1</junit-version>
         <tddl.version>5.1.22-1</tddl.version>
         <swift-version>1.0.0</swift-version>
 
@@ -49,6 +50,7 @@
         <module>drdsreader</module>
         <module>sqlserverreader</module>
         <module>postgresqlreader</module>
+        <module>kingbaseesreader</module>
         <module>oraclereader</module>
         <module>odpsreader</module>
         <module>otsreader</module>
@@ -62,6 +64,10 @@
         <module>rdbmsreader</module>
         <module>hbase11xreader</module>
         <module>hbase094xreader</module>
+        <module>tsdbreader</module>
+        <module>opentsdbreader</module>
+        <module>cassandrareader</module>
+        <module>gdbreader</module>
 
         <!-- writer -->
         <module>mysqlwriter</module>
@@ -75,6 +81,7 @@
         <module>oraclewriter</module>
         <module>sqlserverwriter</module>
         <module>postgresqlwriter</module>
+        <module>kingbaseeswriter</module>
         <module>osswriter</module>
         <module>mongodbwriter</module>
         <module>adswriter</module>
@@ -83,11 +90,20 @@
         <module>hbase11xwriter</module>
         <module>hbase094xwriter</module>
         <module>hbase11xsqlwriter</module>
+        <module>hbase11xsqlreader</module>
         <module>elasticsearchwriter</module>
-
+        <module>tsdbwriter</module>
+        <module>adbpgwriter</module>
+        <module>gdbwriter</module>
+        <module>cassandrawriter</module>
+        <module>clickhousewriter</module>
+        <module>oscarwriter</module>
         <!-- common support module -->
         <module>plugin-rdbms-util</module>
         <module>plugin-unstructured-storage-util</module>
+        <module>hbase20xsqlreader</module>
+        <module>hbase20xsqlwriter</module>
+        <module>kuduwriter</module>
     </modules>
 
     <dependencyManagement>
@@ -166,6 +182,34 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Nexus aliyun</name>
+            <url>https://maven.aliyun.com/repository/central</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Nexus aliyun</name>
+            <url>https://maven.aliyun.com/repository/central</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
         <plugins>
             <plugin>
@@ -188,8 +232,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>${jdk-version}</source>
+                    <target>${jdk-version}</target>
                     <encoding>${project-sourceEncoding}</encoding>
                 </configuration>
             </plugin>
